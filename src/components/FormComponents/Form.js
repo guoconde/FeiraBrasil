@@ -14,13 +14,13 @@ const Form = styled.form`
     display:flex;
     justify-content: space-between;
     width:100%;
-    margin-bottom:20px;
+    margin:20px 0;
   }
   span{
     font-size: 14px;
-  line-height: 17px;
+    line-height: 17px;
 
-  color: #1A202C;
+    color: #1A202C;
     width:100%;
     align-self:center;
     display:flex;

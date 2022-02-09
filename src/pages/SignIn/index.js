@@ -1,16 +1,25 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
-import { Container, Form, Input, Button, StyledLink, Title, Lable } from "../../components/FormComponents";
+import { Container, Form, Input, Button, StyledLink, Title, Lable, RememberMe } from "../../components/FormComponents";
 import useApi from "../../hooks/useApi";
 import { fireAlert } from "../../utils/alerts";
+import { UserContext } from "../../context/user";
+import { SessionContext } from "../../context/session";
 
-export default function SignUp() {
+export default function SignIn() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({ username: '', email: '', password: '', passwordConfirm: '' });
-  const [isLoading, setIsLoading] = useState(false);
-
   const api = useApi()
+  const [formData, setFormData] = useState({email: '', password: ''});
+  const [isLoading, setIsLoading] = useState(false);
+  const { user, setUser } = useContext(UserContext)
+  const { setSession } = useContext(SessionContext)
+  const [remember, setRemember] = useState(false)
+
+  useEffect(()=>{
+    if(user)navigate("/")
+    //eslint-disable-next-line
+  }, [])
 
   function handleChange(e) {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -20,16 +29,12 @@ export default function SignUp() {
     e.preventDefault();
     setIsLoading(true);
 
-    if(formData.password !== formData.passwordConfirm) {
-      setIsLoading(false);
-      return await fireAlert("As senhas devem ser iguais")
-    }
-
     try {
-      const {username, email, password} = formData
-      await api.user.signUp({username, email, password})
+      const { data } = await api.user.signIn(formData)
       setIsLoading(false);
-      navigate("/entrar");
+      if(remember) setUser({ token:data.token, username:data.username })
+      else setSession({ token:data.token, username:data.username })
+      navigate("/");
     } catch (error) {
       setIsLoading(false);
       fireAlert(error.response.data)
@@ -39,16 +44,7 @@ export default function SignUp() {
   return (
     <Container>
       <Form onSubmit={handleSubmit}>
-        <Title>Faça o cadastro</Title>
-        <Lable htmlFor="username">Nome</Lable>
-        <Input
-          type="text"
-          id="username"
-          onChange={handleChange}
-          value={formData.username}
-          disabled={isLoading}
-          required    
-        />
+        <Title>Faça login na sua conta</Title>
         <Lable htmlFor="email">E-mail</Lable>
         <Input
           type="email"
@@ -67,26 +63,23 @@ export default function SignUp() {
           disabled={isLoading}
           required
         />
-        <Lable htmlFor="passwordConfirm">Confirme a senha</Lable>
-        <Input
-          type="password"
-          id="passwordConfirm"
-          onChange={handleChange}
-          value={formData.passwordConfirm}
-          disabled={isLoading}
-          required
-        />
+        <div>
+          <RememberMe>
+            <input id="RememberMe" type="checkbox" value="Lembre de mim" onChange={e=>setRemember(e.target.checked)} />
+            <label htmlFor="RememberMe">Lembre de mim</label>
+          </RememberMe>
+        </div>
         <Button type="submit" disabled={isLoading} color="#FFBE0B">
           {
             isLoading
               ? <ThreeDots type="ThreeDots" color="#FFFFFF" height={50} width={50} />
-              : "Cadastrar"
+              : "Entrar"
           }
         </Button>
         <span>
-          Já tem uma conta? 
-          <StyledLink to="/entrar">
-            Entre agora!
+          Não tem uma conta? 
+          <StyledLink to="/cadastrar">
+            Cadastre-se
           </StyledLink>
         </span>
       </Form>

@@ -13,7 +13,4 @@ export const GlobalStyle = createGlobalStyle`
     button{
         cursor: pointer;
     }
-    ol, ul {
-	    list-style: none;
-    }
 `  

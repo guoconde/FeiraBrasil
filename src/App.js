@@ -9,6 +9,7 @@ import InfoProduct from "./pages/Home/InfoProduct"
 import SignIn from "./pages/SignIn"
 import SignUp from "./pages/SignUp/"
 import Sucess from "./pages/Sucess"
+import Historic from "./pages/Historic"
 
 export default function App(){
     return(
@@ -24,6 +25,7 @@ export default function App(){
                     <Route path="/informacoes" element={<Information/>}></Route>
                     <Route path="/produto" element={<InfoProduct/>}></Route>
                     <Route path="/sucesso" element={<Sucess/>}></Route>
+                    <Route path="/historico" element={<Historic/>}></Route>
                 </Routes>
             </GlobalContext>
         </BrowserRouter>

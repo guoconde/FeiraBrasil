@@ -13,4 +13,7 @@ export default class UserApi {
   saveInfo(body, headers) {
     return api.post("/informacoes", body, headers);
   }
+  getHistoric(headers) {
+    return api.get("/historico", headers);
+  }
 } 

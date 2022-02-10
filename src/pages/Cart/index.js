@@ -1,11 +1,12 @@
-import { CartContainer, CartHeader, CartProducts, Container, Continue, ContinueButton, Delete, Desc, FinalValue, Header, Img, Info, Infos, Logo, Number, Product, ProductDesc, Quantity, Stage, Stages, Total, Unitary, Values } from "./style";
-import LogoImg from "../../img/image 21.svg"
+import { CartContainer, CartHeader, CartProducts, Container, Continue, ContinueButton, Delete, Desc, FinalValue, Img, Info, Infos, NoProducts, Number, Product, ProductDesc, Quantity, Return, Stage, Stages, Total, Unitary, Values } from "./style";
 import { useContext, useEffect, useState } from "react";
 import useApi from "../../hooks/useApi";
 import { UserContext } from "../../context/user";
 import { SessionContext } from "../../context/session";
 import { useNavigate } from "react-router";
 import { CartContext } from "../../context/cart";
+import HeaderComplete from "../Header";
+import { fireConfirm } from "../../utils/alerts";
 
 export default function Cart(){
     const api = useApi()
@@ -18,7 +19,6 @@ export default function Cart(){
     const navigate = useNavigate()
     const[reload, setReload] = useState(false)
     let headers = ""
-    
     if(user) headers = { headers: { Authorization: `Bearer ${user.token}` }}
     else if(session)headers = { headers: { Authorization: `Bearer ${session.token}` }}
 
@@ -27,13 +27,13 @@ export default function Cart(){
         async function getData(){
             
             try {
-            const res = await api.cart.getCart(headers)
-            
-            setCartProducts(res.data)
-            setProductsQuantity(new Array(res.data.length).fill(1))
-            setReload(false)
+                const res = await api.cart.getCart(headers)
+                console.log(res.data)
+                setCartProducts(res.data)
+                setProductsQuantity(new Array(res.data.length).fill(1))
+                setReload(false)
             } catch (error) {
-            console.log(error.response)
+                console.log(error.response)
             }
         }
         getData()
@@ -62,8 +62,11 @@ export default function Cart(){
     }
     
     async function deleteItem(id){
-        await api.cart.deleteProduct(headers, id)
-        setReload(true)
+        const res = await fireConfirm()
+        if(res.isConfirmed){
+            await api.cart.deleteProduct(headers, id)
+            setReload(true)
+        }
     }
     
     function continueCheckout(){
@@ -74,12 +77,7 @@ export default function Cart(){
     
     return(
         <>
-            <Header>
-                <Logo>
-                    <img src={LogoImg} alt="Logo"/>
-                    FeiraBrasil
-                </Logo>
-            </Header>
+            <HeaderComplete/>
 
             <Container>
                 <Stages>
@@ -99,53 +97,56 @@ export default function Cart(){
 
                 <CartContainer>
                     <CartHeader>
-                        <p>CONTINUAR COMPRANDO</p>
+                        <Return onClick={()=>navigate("/")}>CONTINUAR COMPRANDO</Return>
                         <p>MEU CARRINHO({cartProducts.length})</p>
                     </CartHeader>
-                    <Infos>
-                        <p>PRODUTOS</p>
-                        <div>
-                            <p>QUANTIDADE</p>
-                            <p>VALOR UNITÁRIO</p>
-                            <p>VALOR TOTAL</p>
-                            <p>&nbsp;</p>
-                        </div>
-                    </Infos>
-                    <CartProducts>
-                        {
-                            cartProducts.map((product, i) => 
-                                <Product key={i}>
-                                    <Info>
-                                        <Img src={product.img}></Img>
-                                        <ProductDesc>
-                                            <h2>{product.name}</h2>
-                                            <div><span>{product.type}</span><br/><span>{product.origin}</span></div>
-                                            <h3>1{product.und}</h3>
-                                        </ProductDesc>
-                                    </Info>
-                                    <Values>
-                                        <Quantity>
-                                            <input type="number" min={1} value={productQuantity[i] ? productQuantity[i]: 1} onChange={e=>{changeQuantity(e,i)}}></input>
-                                        </Quantity>
-                                        <Unitary>
-                                            {product.price}
-                                        </Unitary>
-                                        <Total>
-                                            {(parseFloat(product.price) * productQuantity[i]).toString()}
-                                        </Total>
-                                        <Delete onClick={()=>deleteItem(product._id)}>
-                                            x
-                                        </Delete>
-                                    </Values>
-                                </Product>
-                            )
-                        }
-                    </CartProducts>
+                    {cartProducts.length
+                    ?   <>
+                            <Infos>
+                                <p>PRODUTOS</p>
+                                <div>
+                                    <p>QUANTIDADE</p>
+                                    <p>VALOR UNITÁRIO</p>
+                                    <p>VALOR TOTAL</p>
+                                    <p>&nbsp;</p>
+                                </div>
+                            </Infos>
+                            <CartProducts>
+                                {cartProducts.map((product, i) => 
+                                        <Product key={i}>
+                                            <Info>
+                                                <Img src={product.img}></Img>
+                                                <ProductDesc>
+                                                    <h2>{product.name}</h2>
+                                                    <div><span>{product.type}</span><br/><span>{product.origin}</span></div>
+                                                    <h3>1{product.und}</h3>
+                                                </ProductDesc>
+                                            </Info>
+                                            <Values>
+                                                <Quantity>
+                                                    <input type="number" min={1} value={productQuantity[i] ? productQuantity[i]: 1} onChange={e=>{changeQuantity(e,i)}}></input>
+                                                </Quantity>
+                                                <Unitary>
+                                                    {product.price}
+                                                </Unitary>
+                                                <Total>
+                                                    {(parseFloat(product.price) * productQuantity[i]).toString()}
+                                                </Total>
+                                                <Delete onClick={()=>deleteItem(product._id)}>
+                                                    x
+                                                </Delete>
+                                            </Values>
+                                        </Product>
+                                    )}
+                            </CartProducts>
+                        </>
+                    :   <NoProducts>Você ainda não colocou nenhum produto no carrinho!</NoProducts>
+                    }
                     <Continue>
                         <FinalValue>
                             Total da compra: R$ {total}
                         </FinalValue>
-                        <ContinueButton onClick={continueCheckout}>Continuar</ContinueButton>
+                        <ContinueButton disabled={cartProducts.length > 0 ? false : true} onClick={continueCheckout}>Continuar</ContinueButton>
                     </Continue>
                 </CartContainer>
             </Container>

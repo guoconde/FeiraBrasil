@@ -1,6 +1,5 @@
-import { Container, Desc, Header, Logo, Number, Stage, Stages } from "../Cart/style";
-import LogoImg from "../../img/image 21.svg"
-import { PaymentArea, ContinueButton, PaymentSection, SectionTitle, Img, ProductDesc, Info, Total, UserData, UserAdress, DeliverType, Options, PaymentForm, OptionArea, PaymentOptions, PaymentOption, PaymentInfo, CreditCard, BankSlip } from "./style";
+import { Container, Desc, Number, Stage, Stages } from "../Cart/style";
+import { PaymentArea, ContinueButton, PaymentSection, SectionTitle, Img, ProductDesc, Info, Total, UserData, UserAdress, DeliverType, Options, PaymentForm, OptionArea, PaymentOptions, PaymentOption, PaymentInfo, CreditCard, BankSlip, InfoButton } from "./style";
 import { Barcode, Card, Checkmark } from "react-ionicons"
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../context/cart";
@@ -8,6 +7,7 @@ import useApi from "../../hooks/useApi";
 import { UserContext } from "../../context/user";
 import { SessionContext } from "../../context/session";
 import { useNavigate } from "react-router";
+import HeaderComplete from "../Header";
 
 export default function Payment() {
     const { user } = useContext(UserContext)
@@ -47,21 +47,16 @@ export default function Payment() {
         else data = "bank slip"
 
         try {
-            const res = await api.cart.confirmPurchase({purchaseInfo:data, products:cart}, headers)
-            console.log(res.data)
+            await api.cart.confirmPurchase({purchaseInfo:data, products:cart}, headers)
+            navigate("/sucesso")
         } catch (error) {
-        console.log(error.response)
+            console.log(error.response)
         }
     }
 
     return(
         <>
-            <Header>
-                <Logo>
-                    <img src={LogoImg} alt="Logo"/>
-                    FeiraBrasil
-                </Logo>
-            </Header>
+            <HeaderComplete/>
 
             <Container>
                 <Stages>
@@ -131,7 +126,7 @@ export default function Payment() {
                                 </>
                             :   <>
                                     <p>Você ainda não atualizou suas informações</p>
-                                    <button onClick={()=>navigate("/informacoes")}>Atualizar informações</button>
+                                    <InfoButton onClick={()=>navigate("/informacoes")}>Atualizar informações</InfoButton>
                                 </>
                         }
                     </PaymentSection>
@@ -153,7 +148,7 @@ export default function Payment() {
                                 <PaymentInfo>
                                     {chosenPayment === "credit card"
                                     ?   <CreditCard>
-                                            <input 
+                                            <input
                                                 type="text" 
                                                 placeholder="0000 0000 0000 0000"
                                                 id="number"

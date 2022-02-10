@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { GlobalStyle } from "./style/reset"
 import GlobalContext from "./context"
 import Cart from "./pages/Cart"
 import Information from "./pages/Information"
@@ -7,7 +8,7 @@ import Home from "./pages/Home"
 import InfoProduct from "./pages/Home/InfoProduct"
 import SignIn from "./pages/SignIn"
 import SignUp from "./pages/SignUp/"
-import { GlobalStyle } from "./style/reset"
+import Sucess from "./pages/Sucess"
 
 export default function App(){
     return(
@@ -22,6 +23,7 @@ export default function App(){
                     <Route path="/pagamento" element={<Payment/>}></Route>
                     <Route path="/informacoes" element={<Information/>}></Route>
                     <Route path="/produto" element={<InfoProduct/>}></Route>
+                    <Route path="/sucesso" element={<Sucess/>}></Route>
                 </Routes>
             </GlobalContext>
         </BrowserRouter>

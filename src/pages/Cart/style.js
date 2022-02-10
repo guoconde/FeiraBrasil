@@ -79,6 +79,15 @@ export const CartHeader = styled.div`
     }
     background:#FFBE0B;
 `
+export const Return = styled.p`
+    cursor:pointer;
+`
+export const NoProducts = styled.div`
+    margin:auto;
+    padding: 50px;
+    font-weight:bold;
+    font-size:20px;
+`
 export const Infos = styled.div`
     display:flex;
     font-weight: bold;

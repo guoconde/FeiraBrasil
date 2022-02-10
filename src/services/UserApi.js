@@ -7,4 +7,10 @@ export default class UserApi {
   signIn(data) {
     return api.post("/entrar", data);
   }
+  infoUser(headers) {
+    return api.get("/pagamento", headers);
+  }
+  saveInfo(body, headers) {
+    return api.post("/informacoes", body, headers);
+  }
 } 

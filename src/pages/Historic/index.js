@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { Footer } from "../../components/FormComponents";
 import { SessionContext } from "../../context/session";
 import { UserContext } from "../../context/user";
 import useApi from "../../hooks/useApi";

@@ -6,3 +6,15 @@ export async function fireAlert(error){
       confirmButtonColor: "#3085d6",
     })
 }
+
+export async function fireConfirm(){
+  const res = await Swal.fire({
+    title: "Tem certeza?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes",
+  })
+  return res
+}

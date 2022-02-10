@@ -96,6 +96,14 @@ export const ContinueButton = styled.button`
     border:0;
     border-radius: 30px;
 `
+export const InfoButton = styled.button`
+margin-top:35px;
+    font-size:18px;
+    padding: 15px;
+    background:#eee;
+    border:0;
+    border-radius: 30px;
+`
 export const PaymentForm = styled.div`
     display:flex;
     flex-direction:column;

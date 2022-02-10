@@ -14,6 +14,23 @@ const Header = styled.div`
 
     font-size: 22px;
 
+    .wellcome {
+
+        .btn {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .links {
+            display: flex;
+            gap: 20px;
+
+            margin-top: 15px;
+
+            font-size: 14px;
+        }
+    }
+        
 `;
 
 export default Header;

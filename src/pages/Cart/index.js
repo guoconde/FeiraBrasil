@@ -5,63 +5,73 @@ import useApi from "../../hooks/useApi";
 import { UserContext } from "../../context/user";
 import { SessionContext } from "../../context/session";
 import { useNavigate } from "react-router";
+import { CartContext } from "../../context/cart";
 
 export default function Cart(){
     const api = useApi()
     const [cartProducts, setCartProducts] = useState([])
     const { user } = useContext(UserContext)
     const { session } = useContext(SessionContext)
+    const { setCart } = useContext(CartContext)
     const [ productQuantity, setProductsQuantity] = useState([])
     const [total, setTotal] = useState(0)
     const navigate = useNavigate()
     const[reload, setReload] = useState(false)
     let headers = ""
+    
     if(user) headers = { headers: { Authorization: `Bearer ${user.token}` }}
-    else headers = { headers: { Authorization: `Bearer ${session.token}` }}
+    else if(session)headers = { headers: { Authorization: `Bearer ${session.token}` }}
 
     useEffect( () => {
+
         async function getData(){
-          
-          try {
+            
+            try {
             const res = await api.cart.getCart(headers)
             
             setCartProducts(res.data)
             setProductsQuantity(new Array(res.data.length).fill(1))
             setReload(false)
-          } catch (error) {
+            } catch (error) {
             console.log(error.response)
-          }
+            }
         }
         getData()
         //eslint-disable-next-line
-      }, [reload])
+    }, [reload])
 
-      useEffect(()=>{
-        setTotal(()=>{
-            let soma = 0
-            let i = 0
-            for(const product of cartProducts){
-                soma += parseFloat(product.price) * productQuantity[i]
-                i++
-            }
-            return soma
-        })
+    useEffect(()=>{
+       
+        let soma = 0
+        let i = 0
+        for(const product of cartProducts){
+            soma += parseFloat(product.price) * productQuantity[i]
+            i++
+        }
+        
+        setTotal(soma)
         //eslint-disable-next-line
-      }, [productQuantity])
-
-      function changeQuantity(e,i){
-          const value = e.target.value
-          const newarr = productQuantity
-
-          newarr[i] = parseInt(value)
-          setProductsQuantity([...newarr])
-      }
-      async function deleteItem(id){
-        const res = await api.cart.deleteProduct(headers, id)
-        console.log(res)
+    }, [productQuantity])
+    
+    function changeQuantity(e,i){
+        const value = e.target.value
+        const newarr = productQuantity
+        
+        newarr[i] = parseInt(value)
+        setProductsQuantity([...newarr])
+    }
+    
+    async function deleteItem(id){
+        await api.cart.deleteProduct(headers, id)
         setReload(true)
-      }
-
+    }
+    
+    function continueCheckout(){
+        const products = cartProducts.map( (product, i) =>{ return{...product, quantity:productQuantity[i]}})
+        setCart({products, total})
+        navigate("/pagamento")
+    }
+    
     return(
         <>
             <Header>
@@ -135,7 +145,7 @@ export default function Cart(){
                         <FinalValue>
                             Total da compra: R$ {total}
                         </FinalValue>
-                        <ContinueButton onClick={()=>navigate("/checkout")}>Continuar</ContinueButton>
+                        <ContinueButton onClick={continueCheckout}>Continuar</ContinueButton>
                     </Continue>
                 </CartContainer>
             </Container>

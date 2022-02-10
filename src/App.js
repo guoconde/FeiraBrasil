@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import GlobalContext from "./context"
 import Cart from "./pages/Cart"
+import Information from "./pages/Information"
+import Payment from "./pages/Payment"
 import Home from "./pages/Home"
 import InfoProduct from "./pages/Home/InfoProduct"
 import SignIn from "./pages/SignIn"
@@ -17,6 +19,8 @@ export default function App(){
                     <Route path="/cadastrar" element={<SignUp/>}></Route>
                     <Route path="/entrar" element={<SignIn/>}></Route>
                     <Route path="/carrinho" element={<Cart/>}></Route>
+                    <Route path="/pagamento" element={<Payment/>}></Route>
+                    <Route path="/informacoes" element={<Information/>}></Route>
                     <Route path="/produto" element={<InfoProduct/>}></Route>
                 </Routes>
             </GlobalContext>

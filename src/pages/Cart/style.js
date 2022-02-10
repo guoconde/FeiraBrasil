@@ -34,8 +34,6 @@ export const Logo = styled.div`
 `
 export const Stages = styled.nav`
     display:flex;
-    background-opacity:0.5;
-
     height:50px;
     margin-bottom:30px;
 `

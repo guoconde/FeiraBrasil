@@ -15,7 +15,7 @@ export default function SignIn() {
   const { user, setUser } = useContext(UserContext)
   const { setSession } = useContext(SessionContext)
   const [remember, setRemember] = useState(false)
-
+  console.log(user)
   useEffect(()=>{
     if(user)navigate("/")
     //eslint-disable-next-line

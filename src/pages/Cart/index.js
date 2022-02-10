@@ -23,12 +23,10 @@ export default function Cart(){
     else if(session)headers = { headers: { Authorization: `Bearer ${session.token}` }}
 
     useEffect( () => {
-
         async function getData(){
             
             try {
                 const res = await api.cart.getCart(headers)
-                console.log(res.data)
                 setCartProducts(res.data)
                 setProductsQuantity(new Array(res.data.length).fill(1))
                 setReload(false)

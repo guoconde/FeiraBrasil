@@ -14,9 +14,8 @@ export const Container = styled.div`
 `
 export const PurchaseComplete = styled.div`
     margin: 100px auto;
-    height:350px;
-    width:350px;
     background: #FFBE0B;
+    width:30%;
     padding:50px;
 
     display:flex;
@@ -33,4 +32,5 @@ export const BackButton = styled.button`
     background:#eee;
     border:0;
     border-radius: 30px;
+    width:300px;
 `

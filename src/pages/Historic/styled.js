@@ -11,7 +11,7 @@ export const HistoricContainer = styled.div`
 export const HistoricTable = styled.div`
     display:flex;
     flex-direction:column;
-    margin-top: 100px;
+    margin: 100px 0;
 `
 export const HistoricInfos = styled.div`
     display:flex;

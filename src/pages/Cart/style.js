@@ -191,10 +191,11 @@ export const FinalValue = styled.h2`
 
 `
 export const ContinueButton = styled.button`
-font-size:18px;
+    font-size:18px;
     width:250px;
     height: 75%;
     background:#eee;
+    color:#000;
     border:0;
     border-radius: 30px;
 `

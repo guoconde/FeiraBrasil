@@ -95,14 +95,18 @@ export const ContinueButton = styled.button`
     background:#eee;
     border:0;
     border-radius: 30px;
+    color:#000;
+    width:90%;
 `
 export const InfoButton = styled.button`
-margin-top:35px;
+    margin-top:35px;
     font-size:18px;
     padding: 15px;
     background:#eee;
     border:0;
     border-radius: 30px;
+    color:#000;
+    width:90%;
 `
 export const PaymentForm = styled.div`
     display:flex;

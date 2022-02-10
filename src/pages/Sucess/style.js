@@ -33,4 +33,5 @@ export const BackButton = styled.button`
     border:0;
     border-radius: 30px;
     width:300px;
+    color:#000;
 `

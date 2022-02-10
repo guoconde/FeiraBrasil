@@ -14,7 +14,10 @@ const Header = styled.div`
 
     font-size: 22px;
 
+    
     .wellcome {
+        position: relative;
+        margin-right: 40px;
 
         .btn {
             display: flex;
@@ -29,7 +32,33 @@ const Header = styled.div`
 
             font-size: 14px;
         }
+
+        .log-out {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+       
     }
+
+    .cart {
+        width: 50px;
+        height: 50px;
+        border-radius: 51%;
+
+        background-color: #FB5607;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: white;
+
+        position: absolute;
+        right: 20px;
+        top: 50px;
+    }
+
         
 `;
 

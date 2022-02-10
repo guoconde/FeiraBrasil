@@ -11,14 +11,14 @@ export default function Products() {
 
     useEffect(() => {
 
-        async function teste() {
+        async function handleProducts() {
             const promisse = await api.products.renderProducts()
 
             setProducts(promisse.data)
 
         }
 
-        teste()
+        handleProducts()
 
         // eslint-disable-next-line
     }, [])

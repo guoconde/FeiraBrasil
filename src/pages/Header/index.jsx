@@ -1,6 +1,5 @@
 import LogoImg from './LogoImg.svg'
 import { Header, Logo } from '../../components/FormComponents'
-import Navigation from '../../components/FormComponents/Navigation'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/user'
 import { SessionContext } from '../../context/session'
@@ -9,9 +8,15 @@ import { useContext, useEffect, useState } from 'react'
 export default function HeaderComplete() {
 
     const navigate = useNavigate()
-    const { user } = useContext(UserContext)
-    const { session } = useContext(SessionContext)
+    const { user, setUser } = useContext(UserContext)
+    const { session, setSession } = useContext(SessionContext)
     const [option, setOption] = useState()
+
+    function handleLogOut() {
+        setUser()
+        setSession()
+        window.location.reload()
+    }
 
     useEffect(() => {
         if (user || session) {
@@ -21,6 +26,9 @@ export default function HeaderComplete() {
                     <div className='links'>
                         <p>Favoritos</p>
                         <p>Histórico de pedidos</p>
+                    </div>
+                    <div className='log-out'>
+                        <ion-icon onClick={handleLogOut} name="log-out-outline"></ion-icon>
                     </div>
                 </>
             )
@@ -45,12 +53,10 @@ export default function HeaderComplete() {
                 <div className="wellcome">
                     {option}
                 </div>
+                <div className='cart'>
+                    <ion-icon name="cart-outline"></ion-icon>
+                </div>
             </Header>
-            <Navigation>
-                <div>Opção 01</div>
-                <div>Opção 02</div>
-                <ion-icon name="cart-outline"></ion-icon>
-            </Navigation>
         </div>
     )
 }

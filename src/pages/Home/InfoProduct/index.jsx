@@ -8,19 +8,20 @@ import FooterComplete from "../../Footer"
 import HeaderComplete from '../../Header'
 
 export default function InfoProduct() {
-
+    
+    const location = useLocation()
+    const product = location.state.el
+    const price = (product.price / 100)
     const api = useApi()
     const [qtd, setQtd] = useState(1)
-    const [favorite, setFavorite] = useState(false)
+    const [favorite, setFavorite] = useState(product.favorite)
     const { user } = useContext(UserContext)
     const { session } = useContext(SessionContext)
 
     console.log(user)
     console.log(session, 'aqui')
 
-    const location = useLocation()
-    const product = location.state.el
-    const price = (product.price / 100)
+   
 
     console.log(qtd)
 

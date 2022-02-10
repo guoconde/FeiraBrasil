@@ -57,6 +57,8 @@ const Header = styled.div`
         position: absolute;
         right: 20px;
         top: 50px;
+
+        cursor: pointer;
     }
 
         

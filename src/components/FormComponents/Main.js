@@ -11,28 +11,28 @@ const Main = styled.div`
         position: fixed;
     }
 
-    nav {
-        width: 100%;
-        height: 80px;
-
-        padding: 0 50px;
-
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        align-items: center;
-        gap: 30px;
-
-        background-color: #F2D278;
+    .div-cart {
+        width: 400px;
+        height: 100vh;
         
-        font-size: 22px;
-        font-weight: bold;
+        position: fixed;
+        right: 0;
+        z-index: 2;
 
-        ion-icon {
-            font-size: 40px;
-            --ionicon-stroke-width: 40px;
-        }
+        background-color: white;
+        border-radius: none;
     }
+
+    .div-overlay {
+        width: 100%;
+        height: 100vh;
+
+        position: fixed;
+        top: 0;
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.5)
+    }
+
 `;
 
 export default Main;

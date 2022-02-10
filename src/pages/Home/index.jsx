@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { Main } from '../../components/FormComponents'
 import FooterComplete from '../Footer'
@@ -7,9 +9,12 @@ import Products from './Products'
 
 export default function Home() {
 
+    const [openCart, setOpen] = useState(false)
+    const navigate = useNavigate()
+
     return (
         <Main>
-            <HeaderComplete />
+            <HeaderComplete setOpen={setOpen}/>
             <DivMain>
                 <h1>Verduras</h1>
                 <DivProducts>
@@ -17,6 +22,18 @@ export default function Home() {
                 </DivProducts>
             </DivMain>
             <FooterComplete />
+            {openCart ?
+                <>
+                    <div className='div-cart'>
+                        <div>MEU CARRINHO</div>
+                        <button onClick={() => setOpen(false)}>Continuar Comprando</button>
+                        <button onClick={() => navigate('/carrinho')}>Finalizar compra</button>
+                    </div>
+                    <div className="div-overlay"></div>
+                </>
+                :
+                ''
+            }
         </Main>
 
     )

@@ -4,8 +4,6 @@ const Footer = styled.div`
     width: 100%;
     height: 150px;
 
-    margin-top: 500px;
-
     padding: 0 50px;
 
     display: flex;

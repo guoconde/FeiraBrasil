@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import useApi from "../../../hooks/useApi"
 
@@ -6,6 +7,7 @@ export default function Products() {
 
     const api = useApi()
     const [products, setProducts] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() => {
 
@@ -14,7 +16,6 @@ export default function Products() {
 
             setProducts(promisse.data)
 
-            console.log(promisse.data)
         }
 
         teste()
@@ -30,7 +31,7 @@ export default function Products() {
         <>
             {
                 products.map((el, i) =>
-                    <Product key={i}>
+                    <Product key={i} onClick={() => navigate('/produto', { state: { id: el._id, el }})}>
                         <img src={el.img} alt={el.name} />
                         <p className='product-name'>{el.name}</p>
                         <p className='product-resume'>{el.resume}</p>

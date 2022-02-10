@@ -1,38 +1,22 @@
 import styled from 'styled-components'
-import { Footer, Header, Logo, Main } from '../../components/FormComponents'
-import LogoImg from './FavIcon.svg'
+import { Main } from '../../components/FormComponents'
+import FooterComplete from '../Footer'
+import HeaderComplete from '../Header'
+
 import Products from './Products'
 
 export default function Home() {
 
     return (
         <Main>
-            <div className='fixed'>
-                <Header>
-                    <Logo>
-                        <img src={LogoImg} alt="logo" />
-                        <h1>FeiraBrasil</h1>
-                    </Logo>
-                    <h1>Olá, Fulano</h1>
-                </Header>
-                <nav>
-                    <div>Opção 01</div>
-                    <div>Opção 02</div>
-                    <ion-icon name="cart-outline"></ion-icon>
-                </nav>
-            </div>
+            <HeaderComplete />
             <DivMain>
                 <h1>Verduras</h1>
                 <DivProducts>
                     <Products />
                 </DivProducts>
             </DivMain>
-            <Footer>
-                ENCONTRE UMA LOJA FEIRABRASIL -
-                CADASTRE-SE PARA RECEBER NOVIDADES -
-                FEIRABRASIL JOURNAL -
-                MAPA DO SITE
-            </Footer>
+            <FooterComplete />
         </Main>
 
     )

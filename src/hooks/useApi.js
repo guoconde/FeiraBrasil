@@ -1,9 +1,11 @@
 import CartApi from "../services/CartApi";
+import ProductsApi from "../services/ProductsApi";
 import UserApi from "../services/UserApi";
 
 export default function useApi() {
   return {
     user: new UserApi(),
-    cart: new CartApi()
+    cart: new CartApi(),
+    products: new ProductsApi(),
   };
 } 

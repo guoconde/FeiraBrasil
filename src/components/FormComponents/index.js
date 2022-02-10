@@ -6,6 +6,10 @@ import StyledLink from "./StyledLink";
 import Title from "./Title";
 import Lable from "./Lable";
 import RememberMe from "./RememberMe";
+import Header from "./Header";
+import Logo from './Logo'
+import Main from "./Main";
+import Footer from "./Footer";
 
 export {
   Container,
@@ -15,5 +19,9 @@ export {
   StyledLink,
   Title,
   Lable,
-  RememberMe
+  RememberMe,
+  Header,
+  Logo,
+  Main,
+  Footer
 }

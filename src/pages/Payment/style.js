@@ -31,7 +31,7 @@ export const ProductDesc = styled.div`
     }
 
 `
-export const Info = styled.div`
+export const InfoElement = styled.div`
     display:flex;
     align-items:flex-start;
     padding-bottom:10px;
@@ -108,7 +108,7 @@ export const InfoButton = styled.button`
     color:#000;
     width:90%;
 `
-export const PaymentForm = styled.div`
+export const PaymentFormElement = styled.div`
     display:flex;
     flex-direction:column;
     h3{

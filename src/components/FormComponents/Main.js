@@ -19,8 +19,34 @@ const Main = styled.div`
         right: 0;
         z-index: 2;
 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
         background-color: white;
         border-radius: none;
+
+        .title-cart {
+            width: 100%;
+            height: 70px;
+
+            background-color: black;
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+        }
+
+        button {
+            width: 250px;
+
+            margin-top: 25px;
+            background-color: #3A86FF;
+        }
     }
 
     .div-overlay {

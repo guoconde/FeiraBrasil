@@ -1,6 +1,7 @@
 import { useContext, useState } from "react"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import styled from "styled-components"
+import { useCart } from "../../../context/CartMount"
 import { SessionContext } from "../../../context/session"
 import { UserContext } from "../../../context/user"
 import useApi from "../../../hooks/useApi"
@@ -8,7 +9,7 @@ import FooterComplete from "../../Footer"
 import HeaderComplete from '../../Header'
 
 export default function InfoProduct() {
-    
+
     const location = useLocation()
     const product = location.state.el
     const price = (product.price / 100)
@@ -17,18 +18,13 @@ export default function InfoProduct() {
     const [favorite, setFavorite] = useState(product.favorite)
     const { user } = useContext(UserContext)
     const { session } = useContext(SessionContext)
-
-    console.log(user)
-    console.log(session, 'aqui')
-
-   
-
-    console.log(qtd)
+    const { cart, setCart } = useCart()
+    const navigate = useNavigate()
 
     async function handleFavorite() {
         !favorite ? setFavorite(true) : setFavorite(false)
 
-        if(user || session) {
+        if (user || session) {
             await api.favorite.favoriteProduct(product._id, !favorite)
             console.log('aqui')
         }
@@ -36,8 +32,8 @@ export default function InfoProduct() {
     }
 
     function addToCart() {
-        console.log(qtd * price, favorite, product._id)
-
+        setCart([...cart, { ...product, qtd }])
+        navigate('/')
     }
 
     return (
@@ -63,6 +59,7 @@ export default function InfoProduct() {
                         <div><strong>Total:</strong> R$ {(qtd * price).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</div>
                     </div>
                     <button onClick={addToCart}>Adicionar ao carrinho</button>
+                    <button onClick={() => navigate('/')}>Continuar comprando</button>
                 </div>
             </DivProduct>
             <FooterComplete />

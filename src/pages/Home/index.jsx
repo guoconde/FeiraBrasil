@@ -31,7 +31,7 @@ export default function Home() {
                     <div className='div-cart'>
                         <div className='title-cart'>MEU CARRINHO ({cart.length})</div>
                         {cart.map((el, i) =>
-                            <ProductMount>
+                            <ProductMount key={i}>
                                 <img src={el.img} alt={el.name} />
                                 <div>
                                     <div><strong>{el.name}</strong></div>

@@ -59,6 +59,8 @@ const Product = styled.div`
     flex-direction: column;
     align-items: center;
 
+    cursor: pointer;
+
     img {
         width: 180px;
         margin-bottom: 10px;

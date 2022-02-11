@@ -11,28 +11,54 @@ const Main = styled.div`
         position: fixed;
     }
 
-    nav {
-        width: 100%;
-        height: 80px;
-
-        padding: 0 50px;
+    .div-cart {
+        width: 400px;
+        height: 100vh;
+        
+        position: fixed;
+        right: 0;
+        z-index: 2;
 
         display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
+        flex-direction: column;
         align-items: center;
-        gap: 30px;
 
-        background-color: #F2D278;
-        
-        font-size: 22px;
-        font-weight: bold;
+        background-color: white;
+        border-radius: none;
 
-        ion-icon {
-            font-size: 40px;
-            --ionicon-stroke-width: 40px;
+        .title-cart {
+            width: 100%;
+            height: 70px;
+
+            background-color: black;
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+        }
+
+        button {
+            width: 250px;
+
+            margin-top: 25px;
+            background-color: #3A86FF;
         }
     }
+
+    .div-overlay {
+        width: 100%;
+        height: 100vh;
+
+        position: fixed;
+        top: 0;
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.5)
+    }
+
 `;
 
 export default Main;

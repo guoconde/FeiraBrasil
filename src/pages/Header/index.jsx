@@ -5,7 +5,7 @@ import { UserContext } from '../../context/user'
 import { SessionContext } from '../../context/session'
 import { useContext, useEffect, useState } from 'react'
 
-export default function HeaderComplete() {
+export default function HeaderComplete({ setOpen }) {
 
     const navigate = useNavigate()
     const { user, setUser } = useContext(UserContext)
@@ -53,7 +53,7 @@ export default function HeaderComplete() {
                 <div className="wellcome">
                     {option}
                 </div>
-                <div className='cart'>
+                <div onClick={() => setOpen(true)} className='cart'>
                     <ion-icon name="cart-outline"></ion-icon>
                 </div>
             </Header>

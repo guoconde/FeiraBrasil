@@ -9,19 +9,20 @@ export default function Products() {
     const [products, setProducts] = useState([])
     const navigate = useNavigate()
 
-    if (products.length === 0) {
-        return ''
-    }
+    
 
-    useEffect(() => {
+    // useEffect(() => {
+        
         async function handleProducts() {
             const promisse = await api.products.renderProducts()
             setProducts(promisse.data)
         }
         handleProducts()
         // eslint-disable-next-line
-    }, [])
-
+    // }, [])
+    if (products.length === 0) {
+        return ''
+    }
     return (
         <>
             {

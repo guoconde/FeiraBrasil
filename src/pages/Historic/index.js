@@ -45,7 +45,7 @@ export default function Hiatoric(){
                             <Purchase key={i}>
                                 <span>{(purchase._id).toString()}</span>
                                 <span>{(purchase.date)}</span>
-                                <span>R$ {(purchase.total)}</span>
+                                <span>R$ {(purchase.total / 100).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span>
                                 <span>{(purchase.purchaseInfo)}</span>
                             </Purchase>
                         )}

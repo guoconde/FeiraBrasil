@@ -1,12 +1,12 @@
 import { useContext, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
-import styled from "styled-components"
 import { useCart } from "../../../context/CartMount"
 import { SessionContext } from "../../../context/session"
 import { UserContext } from "../../../context/user"
 import useApi from "../../../hooks/useApi"
 import FooterComplete from "../../Footer"
 import HeaderComplete from '../../Header'
+import { DivProduct } from "./style"
 
 export default function InfoProduct() {
 
@@ -23,28 +23,23 @@ export default function InfoProduct() {
 
     const [favorite, setFavorite] = useState(false)
 
-    console.log(favorite)
-
     async function handleFavorite() {
-        // !favorite ? setFavorite(true) : setFavorite(false)
-
+        
         if (user || session) {
             const promisse = await api.favorite.favoriteProduct(product._id, session.userId, !favorite)
-
-            const teste = promisse.data.filter(el => el._id === product._id)
-
-            if (teste.length > 0) {
-                console.log('aqui')
+            
+            const newFavorite = promisse.data.filter(el => el._id === product._id)
+            
+            if (newFavorite.length > 0) {
                 setFavorite(true)
             } else {
-                console.log('ou aqui')
                 setFavorite(false)
             }
+        } else {
+            !favorite ? setFavorite(true) : setFavorite(false)
         }
 
     }
-
-
 
     function addToCart() {
         setCart([...cart, { ...product, qtd }])
@@ -82,90 +77,3 @@ export default function InfoProduct() {
     )
 }
 
-const DivProduct = styled.div`
-    width: 100%;
-    height: 60vh;
-
-    border-top: 3px solid #FB5607;
-
-    display: flex;
-    justify-content: space-between;
-
-    .to-cart {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        gap: 20px;
-
-        padding: 30px;
-        background-color: #F2D278;
-
-        img {
-            border: 3px solid #3A86FF;
-            border-radius: 5px;
-            width: 200px;
-        }
-
-        button {
-            width: 200px;
-            height: 50px;
-            
-            background-color: #3A86FF;
-            
-            :active {
-                background-color: #2559ac;
-            }
-        }
-        
-        .quantity {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            
-            input {
-                all: unset;
-                
-                width: 100px;
-                height: 40px;
-                text-align: center;
-                
-                background-color: rgba(255, 255, 255, 0.5)
-            }
-        }
-    }
-    
-    .info-product {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        
-        position: relative;
-        padding: 30px;
-        
-        font-size: 18px;
-        line-height: 30px;
-        
-        .name {
-            align-self: center;
-            
-            font-size: 22px;
-            font-weight: 600;
-            
-            margin-bottom: 30px;
-        }
-        
-        ion-icon {
-            position: absolute;
-            right: 30px;
-            top: 30px;
-            
-            cursor: pointer;
-
-            font-size: 30px;
-            color: red;
-        }
-    }
-    
-`

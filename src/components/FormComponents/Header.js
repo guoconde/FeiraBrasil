@@ -14,10 +14,10 @@ const Header = styled.div`
 
     font-size: 22px;
 
-    .navigate {
+    .navigate,
+    ion-icon {
         cursor: pointer;
     }
-
     
     .wellcome {
         position: relative;

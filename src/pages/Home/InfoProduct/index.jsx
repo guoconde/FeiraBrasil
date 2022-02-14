@@ -4,7 +4,6 @@ import { useCart } from "../../../context/CartMount"
 import { SessionContext } from "../../../context/session"
 import { UserContext } from "../../../context/user"
 import useApi from "../../../hooks/useApi"
-import FooterComplete from "../../Footer"
 import HeaderComplete from '../../Header'
 import { DivProduct } from "./style"
 
@@ -72,7 +71,6 @@ export default function InfoProduct() {
                     <button onClick={() => navigate('/')}>Continuar comprando</button>
                 </div>
             </DivProduct>
-            <FooterComplete />
         </>
     )
 }

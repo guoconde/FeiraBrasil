@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const DivProduct = styled.div`
     width: 100%;
-    height: 100vh;
+    height: 89.8vh;
 
     border-top: 3px solid #FB5607;
 

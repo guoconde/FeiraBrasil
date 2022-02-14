@@ -40,7 +40,7 @@ const Header = styled.div`
         .log-out {
             position: absolute;
             right: 0;
-            top: 0;
+            top: -15px;
         }
        
     }

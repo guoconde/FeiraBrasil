@@ -1,8 +1,11 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { Main } from '../../components/FormComponents'
 import { useCart } from '../../context/CartMount'
+import { SessionContext } from '../../context/session'
+import { UserContext } from '../../context/user'
+import useApi from '../../hooks/useApi'
 import FooterComplete from '../Footer'
 import HeaderComplete from '../Header'
 
@@ -10,15 +13,31 @@ import Products from './Products'
 
 export default function Home() {
 
+    const api = useApi()
     const { cart } = useCart()
     const [openCart, setOpen] = useState(false)
     const navigate = useNavigate()
+    const { user } = useContext(UserContext)
+    const { session } = useContext(SessionContext)
+    
+    console.log(session)
+    console.log(cart, 'aqui')
+    
+    let headers = ""
 
-    console.log(cart)
+    if(user) headers = { headers: { Authorization: `Bearer ${user.token}` }}
+    else if(session) headers = { headers: { Authorization: `Bearer ${session.token}` }}
+
+    async function handleCart() {
+        setOpen(false)
+        navigate('/carrinho')
+
+        await api.cart.postCart(cart, headers)
+    }
 
     return (
         <Main>
-            <HeaderComplete setOpen={setOpen} />
+            <HeaderComplete openCart={openCart} setOpen={setOpen} />
             <DivMain>
                 <h1>Verduras</h1>
                 <DivProducts>
@@ -41,7 +60,7 @@ export default function Home() {
                             </ProductMount>
                         )}
                         <button onClick={() => setOpen(false)}>Continuar Comprando</button>
-                        <button onClick={() => navigate('/carrinho')}>Finalizar compra</button>
+                        <button onClick={() => handleCart()}>Finalizar compra</button>
                     </div>
                     <div onClick={() => setOpen(false)} className="div-overlay"></div>
                 </>
@@ -54,9 +73,11 @@ export default function Home() {
 }
 
 const DivMain = styled.div`
-    margin-top: 300px;
-
+    width: 100%;
+    height: 100vh;
+    
     padding: 0 50px;
+    padding-top: 200px;
 
     h1 {
         margin-bottom: 20px;

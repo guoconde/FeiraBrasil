@@ -10,14 +10,14 @@ import { SessionContext } from "../../context/session";
 export default function SignIn() {
   const navigate = useNavigate();
   const api = useApi()
-  const [formData, setFormData] = useState({email: '', password: ''});
+  const [formData, setFormData] = useState({ email: '', password: '' });
   const [isLoading, setIsLoading] = useState(false);
   const { user, setUser } = useContext(UserContext)
   const { setSession } = useContext(SessionContext)
   const [remember, setRemember] = useState(false)
-  
-  useEffect(()=>{
-    if(user)navigate("/")
+
+  useEffect(() => {
+    if (user) navigate("/")
     //eslint-disable-next-line
   }, [])
 
@@ -32,8 +32,8 @@ export default function SignIn() {
     try {
       const { data } = await api.user.signIn(formData)
       setIsLoading(false);
-      if(remember) setUser({ token:data.token, username:data.username })
-      else setSession({ token:data.token, username:data.username })
+      if (remember) setUser({ token: data.token, username: data.username, userId: data.userId })
+      else setSession({ token: data.token, username: data.username, userId: data.userId })
       navigate("/");
     } catch (error) {
       setIsLoading(false);
@@ -65,7 +65,7 @@ export default function SignIn() {
         />
         <div>
           <RememberMe>
-            <input id="RememberMe" type="checkbox" value="Lembre de mim" onChange={e=>setRemember(e.target.checked)} />
+            <input id="RememberMe" type="checkbox" value="Lembre de mim" onChange={e => setRemember(e.target.checked)} />
             <label htmlFor="RememberMe">Lembre de mim</label>
           </RememberMe>
         </div>
@@ -77,7 +77,7 @@ export default function SignIn() {
           }
         </Button>
         <span>
-          Não tem uma conta? 
+          Não tem uma conta?
           <StyledLink to="/cadastrar">
             Cadastre-se
           </StyledLink>

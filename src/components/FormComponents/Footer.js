@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Footer = styled.div`
     width: 100%;
-    height: 150px;
+    height: 100px;
 
     padding: 0 50px;
 
@@ -12,7 +12,10 @@ const Footer = styled.div`
 
     background-color: #FB5607;
 
-    font-size: 22px;
+    position: sticky;
+    bottom: 0;
+
+    font-size: 14px;
     font-weight: 500;
     color: white;
 

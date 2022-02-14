@@ -26,6 +26,7 @@ export default function App(){
                     <Route path="/produto" element={<InfoProduct/>}></Route>
                     <Route path="/sucesso" element={<Sucess/>}></Route>
                     <Route path="/historico" element={<Historic/>}></Route>
+                    {/* <Route path="/favoritos" element={<Favorite/>}></Route> */}
                 </Routes>
             </GlobalContext>
         </BrowserRouter>

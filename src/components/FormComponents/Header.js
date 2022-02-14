@@ -14,6 +14,10 @@ const Header = styled.div`
 
     font-size: 22px;
 
+    .navigate {
+        cursor: pointer;
+    }
+
     
     .wellcome {
         position: relative;

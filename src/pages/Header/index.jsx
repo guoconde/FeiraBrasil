@@ -24,8 +24,8 @@ export default function HeaderComplete({ setOpen }) {
                 <>
                     <h1>Olá, {session.username}</h1>
                     <div className='links'>
-                        <p>Favoritos</p>
-                        <p>Histórico de pedidos</p>
+                        <p className='navigate' >Favoritos</p>
+                        <p className='navigate' onClick={() => navigate('/historico')}>Histórico de pedidos</p>
                     </div>
                     <div className='log-out'>
                         <ion-icon onClick={handleLogOut} name="log-out-outline"></ion-icon>
@@ -48,7 +48,7 @@ export default function HeaderComplete({ setOpen }) {
             <Header>
                 <Logo>
                     <img src={LogoImg} alt="logo" />
-                    <h1>FeiraBrasil</h1>
+                    <h1 className='navigate' onClick={() => navigate('/')}>FeiraBrasil</h1>
                 </Logo>
                 <div className="wellcome">
                     {option}

@@ -15,21 +15,36 @@ export default function InfoProduct() {
     const price = (product.price / 100)
     const api = useApi()
     const [qtd, setQtd] = useState(1)
-    const [favorite, setFavorite] = useState(product.favorite)
+
     const { user } = useContext(UserContext)
     const { session } = useContext(SessionContext)
     const { cart, setCart } = useCart()
     const navigate = useNavigate()
 
+    const [favorite, setFavorite] = useState(false)
+
+    console.log(favorite)
+
     async function handleFavorite() {
-        !favorite ? setFavorite(true) : setFavorite(false)
+        // !favorite ? setFavorite(true) : setFavorite(false)
 
         if (user || session) {
-            await api.favorite.favoriteProduct(product._id, !favorite)
-            console.log('aqui')
+            const promisse = await api.favorite.favoriteProduct(product._id, session.userId, !favorite)
+
+            const teste = promisse.data.filter(el => el._id === product._id)
+
+            if (teste.length > 0) {
+                console.log('aqui')
+                setFavorite(true)
+            } else {
+                console.log('ou aqui')
+                setFavorite(false)
+            }
         }
 
     }
+
+
 
     function addToCart() {
         setCart([...cart, { ...product, qtd }])

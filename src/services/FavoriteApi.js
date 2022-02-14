@@ -1,8 +1,7 @@
 import api from './api.js'
 
 export default class FavoriteApi {
-    favoriteProduct(id, favorite) {
-        console.log(id)
-        return api.put(`/produtos/${id}`, { favorite: favorite})
+    favoriteProduct(id, userId, isFavorite) {
+        return api.put(`/produtos/${id}`, { userId: userId, isFavorite })
     }
 }

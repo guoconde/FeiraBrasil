@@ -27,7 +27,6 @@ export default function Cart() {
 
             try {
                 const res = await api.cart.getCart(headers)
-                console.log(res.data.cart)
                 setCartProducts(res.data.cart)
                 setProductsQuantity(res.data.cart.map(product => product.qtd))
                 setReload(false)

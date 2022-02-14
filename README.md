@@ -1,35 +1,39 @@
-# Front MyWallet
+# Front FeiraBrasil
 
 ### Descritivo:
 
-- Nesse projeto, teremos menos requisitos, porém você cuidará de todas as etapas de desenvolvimento! Front, back e banco!
+-O projetão dessa semana será a construção do nosso primeiro e-commerce!
+Vocês são livres para escolher o **tipo** e o **nome** do e-commerce, o que preferirem 🙂!
 
-    - Implemente o front-end utilizando HTML, CSS, JS, React e as tecnologias que utilizamos até aqui, conforme o necessário para atender o layout
-    - Implemente o back-end utilizando Node, express e as tecnologias que utilizamos até aqui, conforme necessário para atender o front-end
-    - Crie o banco de dados necessário para a persistência de dados do projeto, utilizando MongoDB
-    - Arquitete o back-end em controllers, routers e middlewares
-    - Fazer o deploy do projeto
+    - **Cadastro/Login:** deve ser possível criar uma conta e se autenticar como cliente do site
+    - **Produtos**: deve ser possível o cliente ver os produtos/serviços de alguma forma e esses dados devem ser carregados dinamicamente de um banco de dados
+    - **Carrinho:** deve ser possível ver os produtos/serviços que adicionei no meu carrinho de compras (ou seja, posso comprar mais de um produto ao mesmo tempo)
+    - **Checkout**: deve ser possível o cliente concluir a compra (porém não é necessário utilizar nenhum serviço de pagamento, pode só dar a compra como concluída e salvar no banco a venda realizada,contendo os dados de pagamento do usuário e dos produtos comprados)
+    - Vocês podem criar novas funcionalidades conforme quiserem 🙂
   
 ### Imagem do desafio:
 
 <p>
 
-<img src='https://raw.githubusercontent.com/guoconde/MyWallet_Front/main/src/components/assets/images/input.png' width='200px' />
-<img src='https://raw.githubusercontent.com/guoconde/MyWallet_Front/main/src/components/assets/images/login.png' width='200px' />
-<img src='https://raw.githubusercontent.com/guoconde/MyWallet_Front/main/src/components/assets/images/output.png' width='200px' />
-<img src='https://raw.githubusercontent.com/guoconde/MyWallet_Front/main/src/components/assets/images/register.png' width='200px' />
-<img src='https://raw.githubusercontent.com/guoconde/MyWallet_Front/main/src/components/assets/images/wallet.png' width='200px' />
-<img src='https://raw.githubusercontent.com/guoconde/MyWallet_Front/main/src/components/assets/images/wallet_2.png' width='200px' />
+<img src='https://github.com/guoconde/FeiraBrasil/blob/main/public/images/tela_01.png?raw=true' width='200px' />
+<img src='https://github.com/guoconde/FeiraBrasil/blob/main/public/images/login.png?raw=true' width='200px' />
+<img src='https://github.com/guoconde/FeiraBrasil/blob/main/public/images/cadastro.png?raw=true' width='200px' />
+<img src='https://github.com/guoconde/FeiraBrasil/blob/main/public/images/carrinho.png?raw=true' width='200px' />
+<img src='https://github.com/guoconde/FeiraBrasil/blob/main/public/images/carrinho02.png?raw=true' width='200px' />
+<img src='https://github.com/guoconde/FeiraBrasil/blob/main/public/images/carrinho03.png?raw=true' width='200px' />
+<img src='https://github.com/guoconde/FeiraBrasil/blob/main/public/images/info.png?raw=true' width='200px' />
+<img src='https://github.com/guoconde/FeiraBrasil/blob/main/public/images/sucesso.png?raw=true' width='200px' />
+<img src='https://github.com/guoconde/FeiraBrasil/blob/main/public/images/historico.png?raw=true' width='200px' />
 
 </p>
 
 ### Projeto Finalizado:
 
-<img src='https://raw.githubusercontent.com/guoconde/MyWallet_Front/main/src/components/assets/images/my_wallet.gif'/>
+<img src='https://github.com/guoconde/FeiraBrasil/blob/main/public/images/feira_brasil.gif?raw=true'/>
 
 ### Link Deploy:
 
-[Clique aqui para acessar a página do projeto](https://mywallet-nu-lime.vercel.app/)
+[Clique aqui para acessar a página do projeto](https://feira-brasil.vercel.app/)
 
 ### Tecnologias utilizadas:
 

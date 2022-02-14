@@ -46,7 +46,7 @@ export default function Products({cartProducts, productQuantity, setProductsQuan
                                 <ProductDesc>
                                     <h2>{product.name}</h2>
                                     <div><span>{product.type}</span><br/><span>{product.origin}</span></div>
-                                    <h3>1{product.und}</h3>
+                                    <h3>1 {product.und}</h3>
                                 </ProductDesc>
                             </Info>
                             <Values>
@@ -54,10 +54,10 @@ export default function Products({cartProducts, productQuantity, setProductsQuan
                                     <input type="number" min={1} value={productQuantity[i] ? productQuantity[i]: 1} onChange={e=>{changeQuantity(e,i)}}></input>
                                 </Quantity>
                                 <Unitary>
-                                    {product.price}
+                                    {(product.price / 100).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                                 </Unitary>
                                 <Total>
-                                    {(parseFloat(product.price) * productQuantity[i]).toString()}
+                                    {(parseFloat(product.price) * productQuantity[i] / 100).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                                 </Total>
                                 <Delete onClick={()=>deleteItem(product._id)}>
                                     x

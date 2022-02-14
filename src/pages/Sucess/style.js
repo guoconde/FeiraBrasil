@@ -15,7 +15,7 @@ export const Container = styled.div`
 export const PurchaseComplete = styled.div`
     margin: 100px auto;
     background: #FFBE0B;
-    width:30%;
+    width:40%;
     padding:50px;
 
     display:flex;

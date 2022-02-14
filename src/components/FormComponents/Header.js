@@ -14,10 +14,10 @@ const Header = styled.div`
 
     font-size: 22px;
 
-    .navigate {
+    .navigate,
+    ion-icon {
         cursor: pointer;
     }
-
     
     .wellcome {
         position: relative;
@@ -40,7 +40,7 @@ const Header = styled.div`
         .log-out {
             position: absolute;
             right: 0;
-            top: 0;
+            top: -15px;
         }
        
     }

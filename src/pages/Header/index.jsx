@@ -4,17 +4,20 @@ import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/user'
 import { SessionContext } from '../../context/session'
 import { useContext, useEffect, useState } from 'react'
+import { useOpen } from '../../context/openCart'
 
-export default function HeaderComplete({ setOpen }) {
+export default function HeaderComplete() {
 
     const navigate = useNavigate()
     const { user, setUser } = useContext(UserContext)
     const { session, setSession } = useContext(SessionContext)
     const [option, setOption] = useState()
+    const { setOpen } = useOpen(false)
 
     function handleLogOut() {
         setUser()
         setSession()
+        navigate('/')
         window.location.reload()
     }
 
@@ -24,7 +27,7 @@ export default function HeaderComplete({ setOpen }) {
                 <>
                     <h1>Olá, {session.username}</h1>
                     <div className='links'>
-                        <p className='navigate' >Favoritos</p>
+                        <p className='navigate' onClick={() => navigate('/favoritos')}>Favoritos</p>
                         <p className='navigate' onClick={() => navigate('/historico')}>Histórico de pedidos</p>
                     </div>
                     <div className='log-out'>

@@ -10,6 +10,9 @@ import SignIn from "./pages/SignIn"
 import SignUp from "./pages/SignUp/"
 import Sucess from "./pages/Sucess"
 import Historic from "./pages/Historic"
+import CartMount from "./pages/CartMount"
+import Favorites from "./pages/Home/Favorites"
+import FooterComplete from "./pages/Footer"
 
 export default function App(){
     return(
@@ -26,8 +29,10 @@ export default function App(){
                     <Route path="/produto" element={<InfoProduct/>}></Route>
                     <Route path="/sucesso" element={<Sucess/>}></Route>
                     <Route path="/historico" element={<Historic/>}></Route>
-                    {/* <Route path="/favoritos" element={<Favorite/>}></Route> */}
+                    <Route path="/favoritos" element={<Favorites/>}></Route>
                 </Routes>
+                <CartMount/>
+                <FooterComplete />
             </GlobalContext>
         </BrowserRouter>
     )

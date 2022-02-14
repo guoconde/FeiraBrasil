@@ -26,7 +26,7 @@ export default function HeaderComplete() {
                 <>
                     <h1>Olá, {session.username}</h1>
                     <div className='links'>
-                        <p className='navigate' >Favoritos</p>
+                        <p className='navigate' onClick={() => navigate('/favoritos')}>Favoritos</p>
                         <p className='navigate' onClick={() => navigate('/historico')}>Histórico de pedidos</p>
                     </div>
                     <div className='log-out'>

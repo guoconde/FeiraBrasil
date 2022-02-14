@@ -20,12 +20,17 @@ export const Product = styled.div`
 
     img {
         width: 180px;
+        height: 130px;
         margin-bottom: 10px;
     }
 
     .product-name {
         font-size: 20px;
         font-weight: 600;
+    }
+
+    .product-resume {
+        text-align: center;
     }
 
     .product-price {

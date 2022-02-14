@@ -1,18 +1,24 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import useApi from "../../../hooks/useApi"
-import { Product } from "./style"
+import { SessionContext } from "../../../../context/session"
+import { UserContext } from "../../../../context/user"
+import useApi from "../../../../hooks/useApi"
+import getHeaders from "../../../../utils/headers"
+import { Product } from "../../Products/style"
 
-export default function Products() {
+export default function Favorite() {
 
     const api = useApi()
     const [products, setProducts] = useState([])
     const navigate = useNavigate()
+    const { user } = useContext(UserContext)
+    const { session } = useContext(SessionContext)
+    const headers = getHeaders(user, session)
 
     useEffect(() => {
         
         async function handleProducts() {
-            const promisse = await api.products.renderProducts()
+            const promisse = await api.favorite.favoriteList(headers)
             setProducts(promisse.data)
         }
         handleProducts()
@@ -20,7 +26,7 @@ export default function Products() {
     }, [])
 
     if (products.length === 0) {
-        return ''
+        return 'Você não possui nenhum favorito.'
     }
     return (
         <>

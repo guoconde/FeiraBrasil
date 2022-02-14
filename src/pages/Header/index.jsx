@@ -4,13 +4,15 @@ import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/user'
 import { SessionContext } from '../../context/session'
 import { useContext, useEffect, useState } from 'react'
+import { useOpen } from '../../context/openCart'
 
-export default function HeaderComplete({ setOpen }) {
+export default function HeaderComplete() {
 
     const navigate = useNavigate()
     const { user, setUser } = useContext(UserContext)
     const { session, setSession } = useContext(SessionContext)
     const [option, setOption] = useState()
+    const { setOpen } = useOpen(false)
 
     function handleLogOut() {
         setUser()

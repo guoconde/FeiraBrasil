@@ -10,6 +10,7 @@ import SignIn from "./pages/SignIn"
 import SignUp from "./pages/SignUp/"
 import Sucess from "./pages/Sucess"
 import Historic from "./pages/Historic"
+import CartMount from "./pages/CartMount"
 
 export default function App(){
     return(
@@ -28,6 +29,7 @@ export default function App(){
                     <Route path="/historico" element={<Historic/>}></Route>
                     {/* <Route path="/favoritos" element={<Favorite/>}></Route> */}
                 </Routes>
+                <CartMount/>
             </GlobalContext>
         </BrowserRouter>
     )

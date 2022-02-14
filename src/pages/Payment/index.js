@@ -49,7 +49,7 @@ export default function Payment() {
                     <PaymentSection active={true}>
                         <SectionTitle>SEU CARRINHO<Checkmark/></SectionTitle>
                         {cart.products.map((product,i)=> <Info product={product} i={i}/> )}
-                        <Total><span>Total a pagar</span><span>R${cart.total}</span></Total>
+                        <Total><span>Total a pagar</span><span>R${(cart.total / 100).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span></Total>
                     </PaymentSection>
 
                     <PaymentSection active={stage === "infos" ? true : false}>

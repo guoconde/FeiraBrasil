@@ -44,8 +44,6 @@ export default function InfoProduct() {
 
     }
 
-
-
     function addToCart() {
         setCart([...cart, { ...product, qtd }])
         navigate('/')
